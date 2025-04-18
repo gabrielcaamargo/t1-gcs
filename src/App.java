@@ -22,6 +22,10 @@ public class App {
             switch (op) {
                 case 1:
                     cadastrarFuncionarios();
+                    break;
+                case 2:
+                    editarFuncionario();
+                    break;
             }
         } while (op != 0);
     }
@@ -65,5 +69,33 @@ public class App {
         cadastroFuncionarios.cadastrarFuncionarios(novoFuncionario);
         System.out.println("\n> Cadastrado com Sucesso!");
 
+    }
+
+    public void editarFuncionario() {
+        System.out.println("\f EDITAR FUNCIONARIO(A)");
+        System.out.print( "> Digite a matricula do funcionario(a): ");
+        int matricula = in.nextInt();
+        Funcionario f = cadastroFuncionarios.buscarFuncionarioMatricula(matricula);
+
+        if(f != null) {
+            System.out.println( "[1] Editar nome");
+            System.out.println( "[2] Editar email");
+            System.out.println( "[2] Cancelar");
+            System.out.print("> ");
+            int op = in.nextInt();
+
+            switch(op) {
+                case 1:
+                    System.out.print("> Digite o nome atualizado: ");
+                    String nome = in.nextLine();
+                    f.setNome(nome);
+                    break;
+                case 2:
+                    System.out.print("> Digite o email atualizado: ");
+                    String email = in.nextLine();
+                    f.setEmail(email);
+                    break;
+            }
+        } else System.out.println("Nenhum funcionario(a) encontrado com a matricula informada.");
     }
 }
