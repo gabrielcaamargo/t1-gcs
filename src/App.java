@@ -72,8 +72,8 @@ public class App {
     }
 
     public void editarFuncionario() {
-        System.out.println("\f EDITAR FUNCIONARIO(A)");
-        System.out.print( "> Digite a matricula do funcionario(a): ");
+        System.out.println("\f EDITAR FUNCIONARIO");
+        System.out.print( "> Digite a matricula do funcionario: ");
         int matricula = in.nextInt();
         Funcionario f = cadastroFuncionarios.buscarFuncionarioMatricula(matricula);
 
@@ -96,6 +96,14 @@ public class App {
                     f.setEmail(email);
                     break;
             }
-        } else System.out.println("Nenhum funcionario(a) encontrado com a matricula informada.");
+            imprimeFuncionario(f);
+        } else System.out.println("Nenhum funcionario encontrado com a matricula informada.");
+    }
+
+    public void imprimeFuncionario(Funcionario f) {
+        System.out.println("\f DADOS DO FUNCIONARIO");
+        System.out.println(" - Matricula: " + f.getMatricula());
+        System.out.println(" - Nome: " + f.getNome());
+        System.out.println(" - Email: " + f.getEmail());
     }
 }
