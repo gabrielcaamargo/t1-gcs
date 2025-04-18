@@ -47,7 +47,7 @@ public class App {
             System.out.print("\n> Matricula do Funcionario(a): ");
             matriculaString = in.nextLine();
 
-            if (matriculaString.startsWith("101") == false || matriculaString.matches("\\d+") == false) {
+            if (!matriculaString.startsWith("101") || !matriculaString.matches("\\d+")) {
                 System.out.println("> ATENÇÃO! Matrículas devem ser numericas e iniciar com 101 !");
                 continue;
             }
@@ -80,10 +80,10 @@ public class App {
         if(f != null) {
             System.out.println( "[1] Editar nome");
             System.out.println( "[2] Editar email");
-            System.out.println( "[2] Cancelar");
+            System.out.println( "[3] Cancelar");
             System.out.print("> ");
             int op = in.nextInt();
-
+            in.nextLine();
             switch(op) {
                 case 1:
                     System.out.print("> Digite o nome atualizado: ");
