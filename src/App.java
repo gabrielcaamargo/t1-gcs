@@ -13,21 +13,24 @@ public class App {
     public void executar() {
         int op;
         do {
-            menu();
-            op = in.nextInt();
-            in.nextLine();
-        } while (op < 0 || op > 2);
+            do {
+                menu();
+                op = in.nextInt();
+                in.nextLine();
+            } while (op < 0 || op > 2);
 
-        switch (op) {
-            case 1:
-                cadastrarFuncionarios();
-        }
+            switch (op) {
+                case 1:
+                    cadastrarFuncionarios();
+            }
+        } while (op != 0);
     }
 
     public void menu() {
         System.out.println(" @ MENU @ ");
         System.out.println(" [1] Cadastrar Funcionários ");
         System.out.println(" [2] Editar Dados Funcionario");
+        System.out.println(" [0] Encerra sistema");
         System.out.print("> ");
     }
 
