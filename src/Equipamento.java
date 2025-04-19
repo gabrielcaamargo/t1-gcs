@@ -1,21 +1,24 @@
 public class Equipamento {
 
-	private int id;
+    private int id;
+    private String nome, descricao, dataAquisicao;
+    private double valorAquisicao;
+    private TipoEquipamento tipoEquipamento;
 
-	private String nome;
+    public Equipamento(int id, String nome, String descricao, String dataAquisicao, double valorAquisicao, TipoEquipamento tipo) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.dataAquisicao = dataAquisicao;
+        this.valorAquisicao = valorAquisicao;
+        this.tipoEquipamento = tipo;
+    }
 
-	private String dataAquisicao;
+    public void editarDescricao(String novaDescricao) {
+        this.descricao = novaDescricao;
+    }
 
-	private String equipe;
-
-	private boolean tipo;
-
-	public void editarNome(String novoNome) {
-
-	}
-
-	public void editarDescricao(String novaDescricao) {
-
-	}
-
+    public int getId() {
+        return id;
+    }
 }
