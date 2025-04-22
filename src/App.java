@@ -48,6 +48,7 @@ public class App {
         System.out.println(" [1] Cadastrar Funcionários ");
         System.out.println(" [2] Editar Dados Funcionario");
         System.out.println(" [3] Buscar Funcionario pelo Nome");
+        System.out.println(" [0] Encerra sistema");
         System.out.print("> ");
     }
 
