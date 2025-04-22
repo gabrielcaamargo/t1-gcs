@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class App {
@@ -21,6 +20,9 @@ public class App {
             in.nextLine();
 
             switch (op) {
+                case 0:
+                    System.out.println("Encerrando...");
+                    break;
                 case 1:
                     cadastrarFuncionarios();
                     break;
@@ -30,6 +32,9 @@ public class App {
                 case 3:
                     cadastroEquipamento();
                     break;
+                    default:
+                        System.out.println("> Opção inválida!");
+                        break;
             }
         } while (op != 0);
     }
