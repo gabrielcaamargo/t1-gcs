@@ -4,14 +4,14 @@ public class CadastroFuncionarios {
     ArrayList<Funcionario> funcionarios;
 
     public CadastroFuncionarios() {
-        funcionarios = new ArrayList<>();
+        funcionarios = new ArrayList<Funcionario>();
     }
 
     public void cadastrarFuncionarios(Funcionario funcionario) {
         funcionarios.add(funcionario);
     }
 
-    public ArrayList listaFuncionarios() {
+    public ArrayList<Funcionario> listaFuncionarios() {
         ArrayList<Funcionario> copia = (ArrayList<Funcionario>) funcionarios.clone();
         return copia;
     }
