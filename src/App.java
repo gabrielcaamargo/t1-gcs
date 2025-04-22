@@ -16,11 +16,30 @@ public class App {
             menu();
             op = in.nextInt();
             in.nextLine();
-        } while (op < 0 || op > 2);
+        } while (op < 0 || op > 3);
 
         switch (op) {
             case 1:
                 cadastrarFuncionarios();
+            case 2:
+                //implementar metodo
+            case 3:
+                System.out.println("Digite o nome: ");
+                String nome = in.nextLine();
+                List<Funcionario> encontrados = cadastroFuncionarios.buscarFuncionarioNome(nome);
+                // Verifica se o funcionário foi encontrado
+                if(!encontrados.isEmpty()) { 
+                    System.out.println("Funcionário(s) encontrado(s): ");
+                    for (Funcionario encontrado : encontrados){
+                        System.out.println("Matrícula: " + encontrado.getMatricula());
+                        System.out.println("Nome: " + encontrado.getNome());                    
+                        System.out.println("Email: " + encontrado.getEmail());
+                        System.out.println();
+                    }
+                } 
+                else
+                    System.out.println("Funcionário não encontrado.");                  
+            break;
         }
     }
 
@@ -28,6 +47,7 @@ public class App {
         System.out.println(" @ MENU @ ");
         System.out.println(" [1] Cadastrar Funcionários ");
         System.out.println(" [2] Editar Dados Funcionario");
+        System.out.println(" [3] Buscar Funcionario pelo Nome");
         System.out.print("> ");
     }
 

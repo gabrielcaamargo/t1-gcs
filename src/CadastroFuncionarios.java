@@ -24,4 +24,18 @@ public class CadastroFuncionarios {
         }
         return null;
     }
+
+    public List<Funcionario> buscarFuncionarioNome(String nome) {
+        List<Funcionario> resultado = new ArrayList<>();
+        if (nome.length() < 3) {
+            return resultado;
+        }
+        String prefixo = nome.substring(0, 3);
+        for (Funcionario auxiliar : funcionarios) {
+            if (auxiliar.getNome().startsWith(prefixo)) {
+                resultado.add(auxiliar);
+            }
+        }
+        return resultado;
+    }
 }
