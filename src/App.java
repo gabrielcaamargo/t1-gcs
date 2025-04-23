@@ -7,10 +7,6 @@ public class App {
     public App() {
         in = new Scanner(System.in);
         cadastroFuncionarios = new CadastroFuncionarios();
-        Funcionario f1 = new Funcionario(1012, "Lucas", "lpinheiro@es");
-        cadastroFuncionarios.cadastrarFuncionarios(f1);
-        Funcionario f2 = new Funcionario(1013, "Luciana", "luciana@es");
-        cadastroFuncionarios.cadastrarFuncionarios(f2);
     }
 
 
