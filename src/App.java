@@ -7,6 +7,10 @@ public class App {
     public App() {
         in = new Scanner(System.in);
         cadastroFuncionarios = new CadastroFuncionarios();
+        Funcionario f1 = new Funcionario(1012, "Lucas", "lpinheiro@es");
+        cadastroFuncionarios.cadastrarFuncionarios(f1);
+        Funcionario f2 = new Funcionario(1013, "Luciana", "luciana@es");
+        cadastroFuncionarios.cadastrarFuncionarios(f2);
     }
 
 
@@ -24,22 +28,8 @@ public class App {
             case 2:
                 //implementar metodo
             case 3:
-                System.out.println("Digite o nome: ");
-                String nome = in.nextLine();
-                List<Funcionario> encontrados = cadastroFuncionarios.buscarFuncionarioNome(nome);
-                // Verifica se o funcionário foi encontrado
-                if(!encontrados.isEmpty()) { 
-                    System.out.println("Funcionário(s) encontrado(s): ");
-                    for (Funcionario encontrado : encontrados){
-                        System.out.println("Matrícula: " + encontrado.getMatricula());
-                        System.out.println("Nome: " + encontrado.getNome());                    
-                        System.out.println("Email: " + encontrado.getEmail());
-                        System.out.println();
-                    }
-                } 
-                else
-                    System.out.println("Funcionário não encontrado.");                  
-            break;
+                procurarFuncionarioPeloNome();           
+                break;
         }
     }
 
@@ -82,6 +72,25 @@ public class App {
         Funcionario novoFuncionario = new Funcionario(matricula, nome, email);
         cadastroFuncionarios.cadastrarFuncionarios(novoFuncionario);
         System.out.println("\n> Cadastrado com Sucesso!");
+    } 
+
+    public void procurarFuncionarioPeloNome(){
+        System.out.println("Digite o nome: ");
+        String nome = in.nextLine();
+            List<Funcionario> encontrados = cadastroFuncionarios.buscarFuncionarioNome(nome);
+            // Verifica se o funcionário foi encontrado
+            if(!encontrados.isEmpty()) { 
+                System.out.println("Funcionário(s) encontrado(s): ");
+                for (Funcionario encontrado : encontrados){
+                    System.out.println("Matrícula: " + encontrado.getMatricula());
+                    System.out.println("Nome: " + encontrado.getNome());                    
+                    System.out.println("Email: " + encontrado.getEmail());
+                    System.out.println();
+                }
+            } 
+            else
+                System.out.println("Funcionário não encontrado.");   
+        }
 
     }
-}
+
