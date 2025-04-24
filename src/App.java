@@ -32,9 +32,12 @@ public class App {
                 case 3:
                     cadastroEquipamento();
                     break;
-                    default:
-                        System.out.println("> Opção inválida!");
-                        break;
+                case 4:
+                    pesquisaEquipamento();
+                    break;
+                default:
+                    System.out.println("> Opção inválida!");
+                    break;
             }
         } while (op != 0);
     }
@@ -44,6 +47,7 @@ public class App {
         System.out.println(" [1] Cadastrar Funcionários ");
         System.out.println(" [2] Editar Dados Funcionario");
         System.out.println(" [3] Cadastrar Equipamento");
+        System.out.println(" [4] Pesquisar Equipamento");
         System.out.print("> ");
     }
 
@@ -141,4 +145,54 @@ public class App {
             }
         } while (aux != null);
     }
+
+    public void pesquisaEquipamento() {
+        System.out.println("\f PESQUISA DE EQUIPAMENTO");
+
+        String opcao;
+        do {
+            System.out.println("\n> Escolha uma opção de pesquisa:");
+            System.out.println("[1] ID");
+            System.out.println("[2] Nome");
+            System.out.println("[3] Descrição");
+            System.out.println("[4] Tipo");
+            System.out.println("[0] Voltar ao menu principal");
+            System.out.print("> ");
+            opcao = in.nextLine();
+
+            switch (opcao) {
+                case "1":
+                    System.out.print("> Digite o ID do equipamento: ");
+                    int id = in.nextInt();
+                    cadastroEquipamentos.buscarEquipamentoId(id);
+                    break;
+                case "2":
+                    System.out.print("> Digite o nome do equipamento: ");
+                    String nome = in.nextLine();
+                    cadastroEquipamentos.pesquisarEquipamentoNome(nome);
+                    break;
+                case "3":
+                    System.out.print("> Digite a descrição do equipamento: ");
+                    String descricao = in.nextLine();
+                    cadastroEquipamentos.pesquisaEquipamentoDescricao(descricao);
+                    break;
+                case "4":
+                    System.out.print("> Digite o tipo do equipamento (Móvel ou Fixo): ");
+                    String tipo = in.nextLine();
+                    if (tipo.equalsIgnoreCase("Móvel")) {
+                        cadastroEquipamentos.pesquisaEquipamentoTipo(TipoEquipamento.MOVEL);
+                    } else if (tipo.equalsIgnoreCase("Fixo")) {
+                        cadastroEquipamentos.pesquisaEquipamentoTipo(TipoEquipamento.FIXO);
+                    } else {
+                        System.out.println("Tipo inválido.");
+                    }
+                    break;
+                case "0":
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        } while (!opcao.equals("0"));
+    }
+
 }
