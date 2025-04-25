@@ -95,6 +95,12 @@ public class App {
                     String email = in.nextLine();
                     f.setEmail(email);
                     break;
+                case 3:
+                    System.out.println("Operacao cancelada.");
+                    break;
+                default:
+                    System.out.println("Opcao invalida, cancelando operacao.");
+                    break;
             }
             imprimeFuncionario(f);
         } else System.out.println("Nenhum funcionario encontrado com a matricula informada.");
