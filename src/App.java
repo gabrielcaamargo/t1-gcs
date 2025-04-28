@@ -185,7 +185,7 @@ public class App {
                 System.out.println("> O equipamento está disponível. Deseja indisponibilizá-lo? (S/N)");
                 String resposta = in.nextLine();
                 if (resposta.equalsIgnoreCase("S")) {
-                    indisponibilizarEquipamento();
+                    indisponibilizarEquipamento(idEquipamento);
                 } else {
                     System.out.println("> Ação cancelada.");
                 }
@@ -193,7 +193,7 @@ public class App {
                 System.out.println("> O equipamento está indisponível. Deseja disponibilizá-lo? (S/N)");
                 String resposta = in.nextLine();
                 if (resposta.equalsIgnoreCase("S")) {
-                    disponibilizarEquipamento();
+                    disponibilizarEquipamento(idEquipamento);
                 } else {
                     System.out.println("> Ação cancelada.");
                 }
@@ -204,11 +204,8 @@ public class App {
         }
     }
 
-    public void indisponibilizarEquipamento() {
+    public void indisponibilizarEquipamento(int idEquipamento) {
         System.out.println("\f INDISPONIBILIZAR EQUIPAMENTO");
-        System.out.print("> Digite o ID do equipamento: ");
-        int idEquipamento = in.nextInt();
-        in.nextLine();
 
         Equipamento equipamento = cadastroEquipamentos.buscarEquipamentoId(idEquipamento);
         if (equipamento != null) {
@@ -225,11 +222,8 @@ public class App {
         }
     }
 
-    public void disponibilizarEquipamento() {
+    public void disponibilizarEquipamento(int idEquipamento) {
         System.out.println("\f DISPONIBILIZAR EQUIPAMENTO");
-        System.out.print("> Digite o ID do equipamento: ");
-        int idEquipamento = in.nextInt();
-        in.nextLine();
 
         Equipamento equipamento = cadastroEquipamentos.buscarEquipamentoId(idEquipamento);
         if (equipamento != null) {
