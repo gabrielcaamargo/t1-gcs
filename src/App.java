@@ -44,6 +44,8 @@ public class App {
         System.out.println(" [1] Cadastrar Funcionários ");
         System.out.println(" [2] Editar Dados Funcionario");
         System.out.println(" [3] Cadastrar Equipamento");
+        System.out.println(" [4] Buscar Funcionario pelo Nome");
+        System.out.println(" [0] Encerra sistema");
         System.out.print("> ");
     }
 
@@ -77,6 +79,25 @@ public class App {
         Funcionario novoFuncionario = new Funcionario(matricula, nome, email);
         cadastroFuncionarios.cadastrarFuncionarios(novoFuncionario);
         System.out.println("\n> Cadastrado com Sucesso!");
+    } 
+
+    public void procurarFuncionarioPeloNome(){
+        System.out.println("Digite o nome: ");
+        String nome = in.nextLine();
+            List<Funcionario> encontrados = cadastroFuncionarios.buscarFuncionarioNome(nome);
+            // Verifica se o funcionário foi encontrado
+            if(!encontrados.isEmpty()) { 
+                System.out.println("Funcionário(s) encontrado(s): ");
+                for (Funcionario encontrado : encontrados){
+                    System.out.println("Matrícula: " + encontrado.getMatricula());
+                    System.out.println("Nome: " + encontrado.getNome());                    
+                    System.out.println("Email: " + encontrado.getEmail());
+                    System.out.println();
+                }
+            } 
+            else
+                System.out.println("Funcionário não encontrado.");   
+        }
 
     }
 
