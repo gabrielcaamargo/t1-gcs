@@ -1,6 +1,8 @@
+
 import java.util.*;
 
 public class App {
+
     Scanner in;
     CadastroFuncionarios cadastroFuncionarios;
     CadastroEquipamentos cadastroEquipamentos;
@@ -26,7 +28,7 @@ public class App {
                     cadastrarFuncionarios();
                     break;
                 case 2:
-                    alterarFuncionairios();
+                    editarFuncionario();
                     break;
                 case 3:
                     cadastroEquipamento();
@@ -64,7 +66,7 @@ public class App {
             System.out.print("\n> Matricula do Funcionario(a): ");
             matriculaString = in.nextLine();
 
-            if (matriculaString.startsWith("101") == false || matriculaString.matches("\\d+") == false) {
+            if (!matriculaString.startsWith("101") || !matriculaString.matches("\\d+")) {
                 System.out.println("> ATENÇÃO! Matrículas devem ser numericas e iniciar com 101 !");
                 continue;
             }
@@ -101,11 +103,27 @@ public class App {
                 System.out.println("Email: " + encontrado.getEmail());
                 System.out.println();
             }
-        } else
+        } else {
             System.out.println("Funcionário não encontrado.");
+        }
     }
 
     public void alterarFuncionairios() {
+        System.out.println("Digite o nome: ");
+        String nome = in.nextLine();
+        List<Funcionario> encontrados = cadastroFuncionarios.buscarFuncionarioNome(nome);
+        // Verifica se o funcionário foi encontrado
+        if (!encontrados.isEmpty()) {
+            System.out.println("Funcionário(s) encontrado(s): ");
+            for (Funcionario encontrado : encontrados) {
+                System.out.println("Matrícula: " + encontrado.getMatricula());
+                System.out.println("Nome: " + encontrado.getNome());
+                System.out.println("Email: " + encontrado.getEmail());
+                System.out.println();
+            }
+        } else {
+            System.out.println("Funcionário não encontrado.");
+        }
     }
 
     public void cadastroEquipamento() {
@@ -167,6 +185,51 @@ public class App {
                 continue;
             }
         } while (aux != null);
+
+    }
+
+    public void editarFuncionario() {
+        System.out.println("\f EDITAR FUNCIONARIO");
+        System.out.print("> Digite a matricula do funcionario: ");
+        int matricula = in.nextInt();
+        Funcionario f = cadastroFuncionarios.buscarFuncionarioMatricula(matricula);
+
+        if (f != null) {
+            System.out.println("[1] Editar nome");
+            System.out.println("[2] Editar email");
+            System.out.println("[3] Cancelar");
+            System.out.print("> ");
+            int op = in.nextInt();
+            in.nextLine();
+            switch (op) {
+                case 1:
+                    System.out.print("> Digite o nome atualizado: ");
+                    String nome = in.nextLine();
+                    f.setNome(nome);
+                    break;
+                case 2:
+                    System.out.print("> Digite o email atualizado: ");
+                    String email = in.nextLine();
+                    f.setEmail(email);
+                    break;
+                case 3:
+                    System.out.println("Operacao cancelada.");
+                    break;
+                default:
+                    System.out.println("Opcao invalida, cancelando operacao.");
+                    break;
+            }
+            imprimeFuncionario(f);
+        } else {
+            System.out.println("Nenhum funcionario encontrado com a matricula informada.");
+        }
+    }
+
+    public void imprimeFuncionario(Funcionario f) {
+        System.out.println("\f DADOS DO FUNCIONARIO");
+        System.out.println(" - Matricula: " + f.getMatricula());
+        System.out.println(" - Nome: " + f.getNome());
+        System.out.println(" - Email: " + f.getEmail());
     }
 
     public void alterarSituacaoEquipamento() {
