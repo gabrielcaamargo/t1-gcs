@@ -1,6 +1,8 @@
+
 import java.util.*;
 
 public class App {
+
     Scanner in;
     CadastroFuncionarios cadastroFuncionarios;
     CadastroEquipamentos cadastroEquipamentos;
@@ -10,7 +12,6 @@ public class App {
         cadastroFuncionarios = new CadastroFuncionarios();
         cadastroEquipamentos = new CadastroEquipamentos();
     }
-
 
     public void executar() {
         int op;
@@ -35,6 +36,9 @@ public class App {
                 case 4:
                     procurarFuncionarioPeloNome();
                     break;
+                case 5:
+                    alterarSituacaoEquipamento();
+                    break;
                 default:
                     System.out.println("> Opção inválida!");
                     break;
@@ -48,6 +52,7 @@ public class App {
         System.out.println(" [2] Editar Dados Funcionario");
         System.out.println(" [3] Cadastrar Equipamento");
         System.out.println(" [4] Buscar Funcionario pelo Nome");
+        System.out.println(" [5] Mudar situação do Equipamento");
         System.out.println(" [0] Encerra sistema");
         System.out.print("> ");
     }
@@ -72,7 +77,8 @@ public class App {
                 continue;
             }
 
-        } while (matriculaString.startsWith("101") == false || cadastroFuncionarios.buscarFuncionarioMatricula(matricula) != null);
+        } while (matriculaString.startsWith("101") == false
+                || cadastroFuncionarios.buscarFuncionarioMatricula(matricula) != null);
 
         System.out.print("> Nome do Funcionario(a): ");
         String nome = in.nextLine();
@@ -82,24 +88,42 @@ public class App {
         Funcionario novoFuncionario = new Funcionario(matricula, nome, email);
         cadastroFuncionarios.cadastrarFuncionarios(novoFuncionario);
         System.out.println("\n> Cadastrado com Sucesso!");
-    } 
+    }
 
-    public void procurarFuncionarioPeloNome(){
+    public void procurarFuncionarioPeloNome() {
         System.out.println("Digite o nome: ");
         String nome = in.nextLine();
-            List<Funcionario> encontrados = cadastroFuncionarios.buscarFuncionarioNome(nome);
-            // Verifica se o funcionário foi encontrado
-            if(!encontrados.isEmpty()) { 
-                System.out.println("Funcionário(s) encontrado(s): ");
-                for (Funcionario encontrado : encontrados){
-                    System.out.println("Matrícula: " + encontrado.getMatricula());
-                    System.out.println("Nome: " + encontrado.getNome());                    
-                    System.out.println("Email: " + encontrado.getEmail());
-                    System.out.println();
-                }
-            } 
-            else
-                System.out.println("Funcionário não encontrado.");   
+        List<Funcionario> encontrados = cadastroFuncionarios.buscarFuncionarioNome(nome);
+        // Verifica se o funcionário foi encontrado
+        if (!encontrados.isEmpty()) {
+            System.out.println("Funcionário(s) encontrado(s): ");
+            for (Funcionario encontrado : encontrados) {
+                System.out.println("Matrícula: " + encontrado.getMatricula());
+                System.out.println("Nome: " + encontrado.getNome());
+                System.out.println("Email: " + encontrado.getEmail());
+                System.out.println();
+            }
+        } else {
+            System.out.println("Funcionário não encontrado.");
+        }
+    }
+
+    public void alterarFuncionairios() {
+        System.out.println("Digite o nome: ");
+        String nome = in.nextLine();
+        List<Funcionario> encontrados = cadastroFuncionarios.buscarFuncionarioNome(nome);
+        // Verifica se o funcionário foi encontrado
+        if (!encontrados.isEmpty()) {
+            System.out.println("Funcionário(s) encontrado(s): ");
+            for (Funcionario encontrado : encontrados) {
+                System.out.println("Matrícula: " + encontrado.getMatricula());
+                System.out.println("Nome: " + encontrado.getNome());
+                System.out.println("Email: " + encontrado.getEmail());
+                System.out.println();
+            }
+        } else {
+            System.out.println("Funcionário não encontrado.");
+        }
     }
 
     public void cadastroEquipamento() {
@@ -137,14 +161,16 @@ public class App {
                     if (tipoEquipamento == 1) {
 
                         TipoEquipamento enumTipo = TipoEquipamento.MOVEL;
-                        Equipamento novoEquipmaneto = new Equipamento(idEquipamento, nomeEquipamento, descricaoEquipamento, dataAquisição, custoAquisicao, enumTipo);
+                        Equipamento novoEquipmaneto = new Equipamento(idEquipamento, nomeEquipamento,
+                                descricaoEquipamento, dataAquisição, custoAquisicao, enumTipo);
                         cadastroEquipamentos.adicionaEquipamentos(novoEquipmaneto);
                         System.out.println("> Cadastrado com sucesso!");
 
                     } else if (tipoEquipamento == 2) {
 
                         TipoEquipamento enumTipo = TipoEquipamento.FIXO;
-                        Equipamento novoEquipmaneto = new Equipamento(idEquipamento, nomeEquipamento, descricaoEquipamento, dataAquisição, custoAquisicao, enumTipo);
+                        Equipamento novoEquipmaneto = new Equipamento(idEquipamento, nomeEquipamento,
+                                descricaoEquipamento, dataAquisição, custoAquisicao, enumTipo);
                         cadastroEquipamentos.adicionaEquipamentos(novoEquipmaneto);
                         System.out.println("> Cadastrado com sucesso!");
 
@@ -159,23 +185,23 @@ public class App {
                 continue;
             }
         } while (aux != null);
-        
+
     }
 
     public void editarFuncionario() {
         System.out.println("\f EDITAR FUNCIONARIO");
-        System.out.print( "> Digite a matricula do funcionario: ");
+        System.out.print("> Digite a matricula do funcionario: ");
         int matricula = in.nextInt();
         Funcionario f = cadastroFuncionarios.buscarFuncionarioMatricula(matricula);
 
-        if(f != null) {
-            System.out.println( "[1] Editar nome");
-            System.out.println( "[2] Editar email");
-            System.out.println( "[3] Cancelar");
+        if (f != null) {
+            System.out.println("[1] Editar nome");
+            System.out.println("[2] Editar email");
+            System.out.println("[3] Cancelar");
             System.out.print("> ");
             int op = in.nextInt();
             in.nextLine();
-            switch(op) {
+            switch (op) {
                 case 1:
                     System.out.print("> Digite o nome atualizado: ");
                     String nome = in.nextLine();
@@ -194,7 +220,9 @@ public class App {
                     break;
             }
             imprimeFuncionario(f);
-        } else System.out.println("Nenhum funcionario encontrado com a matricula informada.");
+        } else {
+            System.out.println("Nenhum funcionario encontrado com a matricula informada.");
+        }
     }
 
     public void imprimeFuncionario(Funcionario f) {
@@ -202,5 +230,74 @@ public class App {
         System.out.println(" - Matricula: " + f.getMatricula());
         System.out.println(" - Nome: " + f.getNome());
         System.out.println(" - Email: " + f.getEmail());
+    }
+
+    public void alterarSituacaoEquipamento() {
+        System.out.println("\f ALTERAR SITUAÇÃO DO EQUIPAMENTO");
+        System.out.print("> Digite o ID do equipamento: ");
+        int idEquipamento = in.nextInt();
+        in.nextLine();
+
+        Equipamento equipamento = cadastroEquipamentos.buscarEquipamentoId(idEquipamento);
+        if (equipamento != null) {
+            boolean equipamentoDisponivel = equipamento.equipamentoEstaDisponivel();
+            System.out.println("A situação atual do equipamento é: "
+                    + (equipamentoDisponivel ? "Disponível" : "Indisponível"));
+
+            if (equipamentoDisponivel) {
+                System.out.println("> O equipamento está disponível. Deseja indisponibilizá-lo? (S/N)");
+                String resposta = in.nextLine();
+                if (resposta.equalsIgnoreCase("S")) {
+                    indisponibilizarEquipamento(idEquipamento);
+                } else {
+                    System.out.println("> Ação cancelada.");
+                }
+            } else {
+                System.out.println("> O equipamento está indisponível. Deseja disponibilizá-lo? (S/N)");
+                String resposta = in.nextLine();
+                if (resposta.equalsIgnoreCase("S")) {
+                    disponibilizarEquipamento(idEquipamento);
+                } else {
+                    System.out.println("> Ação cancelada.");
+                }
+            }
+
+        } else {
+            System.out.println("> Equipamento não encontrado.");
+        }
+    }
+
+    public void indisponibilizarEquipamento(int idEquipamento) {
+        System.out.println("\f INDISPONIBILIZAR EQUIPAMENTO");
+
+        Equipamento equipamento = cadastroEquipamentos.buscarEquipamentoId(idEquipamento);
+        if (equipamento != null) {
+            if (equipamento.equipamentoEstaDisponivel()) {
+                System.out.print("> Motivo da Indisponibilidade: ");
+                String motivo = in.nextLine();
+                equipamento.indisponibilizarEquipamento(motivo);
+                System.out.println("> Equipamento indisponibilizado com sucesso!");
+            } else {
+                System.out.println("> Equipamento já está indisponível.");
+            }
+        } else {
+            System.out.println("> Equipamento não encontrado.");
+        }
+    }
+
+    public void disponibilizarEquipamento(int idEquipamento) {
+        System.out.println("\f DISPONIBILIZAR EQUIPAMENTO");
+
+        Equipamento equipamento = cadastroEquipamentos.buscarEquipamentoId(idEquipamento);
+        if (equipamento != null) {
+            if (!equipamento.equipamentoEstaDisponivel()) {
+                equipamento.disponibilizarEquipamento();
+                System.out.println("> Equipamento disponibilizado com sucesso!");
+            } else {
+                System.out.println("> Equipamento já está disponível.");
+            }
+        } else {
+            System.out.println("> Equipamento não encontrado.");
+        }
     }
 }
