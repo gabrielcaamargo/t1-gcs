@@ -6,9 +6,9 @@ public class Equipamento {
     private TipoEquipamento tipoEquipamento;
     private boolean disponivel;
     private String motivoIndisponibilidade;
+    private Funcionario funcionario;
 
-    public Equipamento(int id, String nome, String descricao, String dataAquisicao, double valorAquisicao,
-            TipoEquipamento tipo) {
+    public Equipamento(int id, String nome, String descricao, String dataAquisicao, double valorAquisicao, TipoEquipamento tipo, Funcionario funcionario) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -17,6 +17,7 @@ public class Equipamento {
         this.tipoEquipamento = tipo;
         this.disponivel = true;
         this.motivoIndisponibilidade = null;
+        this.funcionario = funcionario;
     }
 
     public void editarDescricao(String novaDescricao) {
@@ -39,5 +40,13 @@ public class Equipamento {
     public void disponibilizarEquipamento() {
         this.disponivel = true;
         this.motivoIndisponibilidade = null;
+    }
+    
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 }

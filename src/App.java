@@ -161,23 +161,24 @@ public class App {
                     if (tipoEquipamento == 1) {
 
                         TipoEquipamento enumTipo = TipoEquipamento.MOVEL;
-                        Equipamento novoEquipmaneto = new Equipamento(idEquipamento, nomeEquipamento,
-                                descricaoEquipamento, dataAquisição, custoAquisicao, enumTipo);
+                        Equipamento novoEquipmaneto = new Equipamento(idEquipamento, nomeEquipamento, 
+                                descricaoEquipamento, dataAquisição, custoAquisicao, enumTipo, null);
                         cadastroEquipamentos.adicionaEquipamentos(novoEquipmaneto);
-                        System.out.println("> Cadastrado com sucesso!");
 
                     } else if (tipoEquipamento == 2) {
 
                         TipoEquipamento enumTipo = TipoEquipamento.FIXO;
-                        Equipamento novoEquipmaneto = new Equipamento(idEquipamento, nomeEquipamento,
-                                descricaoEquipamento, dataAquisição, custoAquisicao, enumTipo);
+                        Equipamento novoEquipmaneto = new Equipamento(idEquipamento, nomeEquipamento, 
+                                descricaoEquipamento, dataAquisição, custoAquisicao, enumTipo, null);
                         cadastroEquipamentos.adicionaEquipamentos(novoEquipmaneto);
-                        System.out.println("> Cadastrado com sucesso!");
 
                     } else {
                         System.out.println("Tipo Inválido.");
                         continue;
                     }
+
+                    cadastraFuncionarioResponsavel(idEquipamento);
+                    System.out.println("> Cadastrado com sucesso!");
 
                 } while (tipoEquipamento < 1 || tipoEquipamento > 2);
             } else {
@@ -298,6 +299,28 @@ public class App {
             }
         } else {
             System.out.println("> Equipamento não encontrado.");
+        }
+    }
+    
+    public void cadastraFuncionarioResponsavel(int idEquipamento) {
+        Funcionario funcionario;
+        int idFuncionario;
+        int idEquipa = idEquipamento;
+
+        do {
+            System.out.println("\n> Digite o ID do funcionário responsável: ");
+            idFuncionario = in.nextInt();
+            funcionario = cadastroFuncionarios.buscarFuncionarioMatricula(idFuncionario);
+            if(funcionario == null) {
+                System.out.print("Não foi possível encontrar um funcionário com essa matrícula!");
+            }
+        }while(funcionario==null);
+
+        Equipamento equipamento = cadastroEquipamentos.buscarEquipamentoId(idEquipa);
+
+        if(equipamento != null) {
+            equipamento.setFuncionario(funcionario);
+            funcionario.addEquipamento(equipamento);
         }
     }
 }
