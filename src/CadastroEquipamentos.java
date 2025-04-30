@@ -23,7 +23,7 @@ public class CadastroEquipamentos {
     public void pesquisarEquipamentoNome(String nome) {
         ArrayList<Equipamento> resultado = new ArrayList<>();
         for (Equipamento aux : equipamentos) {
-            if (aux.getNome().equalsIgnoreCase(nome)) {
+            if (aux.getNome().contains(nome)) {
                 resultado.add(aux);
             }
         }
@@ -31,8 +31,13 @@ public class CadastroEquipamentos {
             System.out.println("Equipamento não encontrado.");
         } else {
             System.out.println("Equipamentos encontrados:");
+            int count = 1;
             for (Equipamento aux : resultado) {
-                System.out.println(aux);
+                System.out.println("Equipamento " + count++ + ":");
+                count++;
+                System.out.println("| Nome: " + aux.getNome() + " |");
+                System.out.println("| Descrição: " + aux.getDescricao() + " |");
+                System.out.println("| Tipo: " + aux.getTipoEquipamento() + " |");
             }
         }
     }
@@ -40,7 +45,7 @@ public class CadastroEquipamentos {
     public void pesquisaEquipamentoDescricao(String descricao) {
         ArrayList<Equipamento> resultado = new ArrayList<>();
         for (Equipamento aux : equipamentos) {
-            if (aux.getDescricao().equalsIgnoreCase(descricao)) {
+            if (aux.getDescricao().contains(descricao)) {
                 resultado.add(aux);
             }
         }
@@ -48,8 +53,13 @@ public class CadastroEquipamentos {
             System.out.println("Equipamento não encontrado.");
         } else {
             System.out.println("Equipamentos encontrados:");
+            int count = 1;
             for (Equipamento aux : resultado) {
-                System.out.println(aux);
+                System.out.println("Equipamento " + count++ + ":");
+                count++;
+                System.out.println("| Nome: " + aux.getNome() + " |");
+                System.out.println("| Descrição: " + aux.getDescricao() + " |");
+                System.out.println("| Tipo: " + aux.getTipoEquipamento() + " |");
             }
         }
     }
@@ -65,8 +75,13 @@ public class CadastroEquipamentos {
             System.out.println("Equipamento não encontrado.");
         } else {
             System.out.println("Equipamentos encontrados:");
+            int count = 1;
             for (Equipamento aux : resultado) {
-                System.out.println(aux);
+                System.out.println("Equipamento " + count++ + ":");
+                count++;
+                System.out.println("| Nome: " + aux.getNome() + " |");
+                System.out.println("| Descrição: " + aux.getDescricao() + " |");
+                System.out.println("| Tipo: " + aux.getTipoEquipamento() + " |");
             }
         }
     }
@@ -82,8 +97,13 @@ public class CadastroEquipamentos {
             System.out.println("Equipamento não encontrado.");
         } else {
             System.out.println("Equipamentos encontrados:");
+            int count = 1;
             for (Equipamento aux : resultado) {
-                System.out.println(aux);
+                System.out.println("Equipamento " + count++ + ":");
+                count++;
+                System.out.println("| Nome: " + aux.getNome() + " |");
+                System.out.println("| Descrição: " + aux.getDescricao() + " |");
+                System.out.println("| Tipo: " + aux.getTipoEquipamento() + " |");
             }
         }
     }
@@ -91,7 +111,7 @@ public class CadastroEquipamentos {
     public void pesquisaEquipamentoData(String data) {
         ArrayList<Equipamento> resultado = new ArrayList<>();
         for (Equipamento aux : equipamentos) {
-            if (aux.getDataAquisicao().equalsIgnoreCase(data)) {
+            if (aux.getDataAquisicao().contains(data)) {
                 resultado.add(aux);
             }
         }
@@ -99,8 +119,13 @@ public class CadastroEquipamentos {
             System.out.println("Equipamento não encontrado.");
         } else {
             System.out.println("Equipamentos encontrados:");
+            int count = 1;
             for (Equipamento aux : resultado) {
-                System.out.println(aux);
+                System.out.println("Equipamento " + count++ + ":");
+                count++;
+                System.out.println("| Nome: " + aux.getNome() + " |");
+                System.out.println("| Descrição: " + aux.getDescricao() + " |");
+                System.out.println("| Tipo: " + aux.getTipoEquipamento() + " |");
             }
         }
     }
