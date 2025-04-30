@@ -91,6 +91,11 @@ public class App {
     }
 
     public void procurarFuncionarioPeloNome() {
+        if (!cadastroFuncionarios.existemFuncionarios()) {
+            System.out.println("> Nenhum funcionário cadastrado.");
+            return;
+        }
+
         System.out.println("Digite o nome: ");
         String nome = in.nextLine();
         List<Funcionario> encontrados = cadastroFuncionarios.buscarFuncionarioNome(nome);
@@ -128,6 +133,11 @@ public class App {
 
     public void cadastroEquipamento() {
         System.out.println("\f CADASTRO EQUIPAMENTO");
+
+        if(!cadastroFuncionarios.existemFuncionarios()) {
+            System.out.println("> Nenhum funcionario cadastrado. Cadastro de equipamento impossivel.");
+            return;
+        }
 
         Equipamento aux;
         do {
@@ -190,6 +200,11 @@ public class App {
     }
 
     public void editarFuncionario() {
+        if (!cadastroFuncionarios.existemFuncionarios()) {
+            System.out.println("> Nenhum funcionário cadastrado.");
+            return;
+        }
+
         System.out.println("\f EDITAR FUNCIONARIO");
         System.out.print("> Digite a matricula do funcionario: ");
         int matricula = in.nextInt();
@@ -235,6 +250,12 @@ public class App {
 
     public void alterarSituacaoEquipamento() {
         System.out.println("\f ALTERAR SITUAÇÃO DO EQUIPAMENTO");
+
+        if(!cadastroEquipamentos.existemEquipamentos()) {
+            System.out.println("> Nenhum equipamento cadastrado!");
+            return;
+        }
+
         System.out.print("> Digite o ID do equipamento: ");
         int idEquipamento = in.nextInt();
         in.nextLine();
@@ -270,7 +291,6 @@ public class App {
 
     public void indisponibilizarEquipamento(int idEquipamento) {
         System.out.println("\f INDISPONIBILIZAR EQUIPAMENTO");
-
         Equipamento equipamento = cadastroEquipamentos.buscarEquipamentoId(idEquipamento);
         if (equipamento != null) {
             if (equipamento.equipamentoEstaDisponivel()) {
@@ -288,7 +308,6 @@ public class App {
 
     public void disponibilizarEquipamento(int idEquipamento) {
         System.out.println("\f DISPONIBILIZAR EQUIPAMENTO");
-
         Equipamento equipamento = cadastroEquipamentos.buscarEquipamentoId(idEquipamento);
         if (equipamento != null) {
             if (!equipamento.equipamentoEstaDisponivel()) {

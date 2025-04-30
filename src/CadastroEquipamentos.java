@@ -19,4 +19,8 @@ public class CadastroEquipamentos {
         }
         return null;
     }
+
+    public boolean existemEquipamentos() {
+        return !equipamentos.isEmpty();
+    }
 }
