@@ -2,7 +2,6 @@
 import java.util.*;
 
 public class App {
-
     Scanner in;
     CadastroFuncionarios cadastroFuncionarios;
     CadastroEquipamentos cadastroEquipamentos;
@@ -31,8 +30,7 @@ public class App {
         nFuncionario2.addEquipamento(nEquipamento2);
         nFuncionario3.addEquipamento(nEquipamento3);
         nFuncionario4.addEquipamento(nEquipamento4);
-        nFuncionario4.addEquipamento(nEquipamento5);gi
-
+        nFuncionario4.addEquipamento(nEquipamento5);
 
         cadastroEquipamentos.adicionaEquipamentos(nEquipamento1);
         cadastroEquipamentos.adicionaEquipamentos(nEquipamento2);
@@ -45,10 +43,7 @@ public class App {
         cadastroFuncionarios.cadastrarFuncionarios(nFuncionario3);
         cadastroFuncionarios.cadastrarFuncionarios(nFuncionario4);
         cadastroFuncionarios.cadastrarFuncionarios(nFuncionario5);
-
-
     }
-
 
     public void executar() {
         int op;
