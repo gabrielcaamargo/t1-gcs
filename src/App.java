@@ -310,6 +310,8 @@ public class App {
                 System.out.println("> Funcionário não encontrado. Tente novamente.");
             }
         }
+        System.out.println("> Responsável alterado com sucesso!");
+        System.out.println("> Novo responsável: " + novoResponsavel.getNome() + " (Matrícula: " + novoResponsavel.getMatricula() + ")");
     }
 
     public void indisponibilizarEquipamento(int idEquipamento) {
