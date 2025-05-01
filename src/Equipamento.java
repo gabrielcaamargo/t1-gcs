@@ -49,4 +49,8 @@ public class Equipamento {
     public Funcionario getFuncionario() {
         return funcionario;
     }
+
+    public String getNome() {
+       return nome;
+    }
 }

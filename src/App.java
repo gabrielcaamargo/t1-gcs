@@ -71,6 +71,9 @@ public class App {
                 case 5:
                     alterarSituacaoEquipamento();
                     break;
+                case 6:
+                    alterarResponsavelEquipamento();
+                    break;
                 default:
                     System.out.println("> Opção inválida!");
                     break;
@@ -85,6 +88,7 @@ public class App {
         System.out.println(" [3] Cadastrar Equipamento");
         System.out.println(" [4] Buscar Funcionario pelo Nome");
         System.out.println(" [5] Mudar situação do Equipamento");
+        System.out.println(" [6] Alterar responsável por equipamento");
         System.out.println(" [0] Encerra sistema");
         System.out.print("> ");
     }
@@ -298,6 +302,48 @@ public class App {
         } else {
             System.out.println("> Equipamento não encontrado.");
         }
+    }
+
+    public void alterarResponsavelEquipamento() {
+        System.out.println("\n--- ALTERAR RESPONSÁVEL DE EQUIPAMENTO ---");
+    
+        int idEquipamento;
+        Equipamento equipamento;
+    
+        while (true) {
+            System.out.print("> Digite o ID do equipamento: ");
+            idEquipamento = in.nextInt();
+            in.nextLine(); 
+    
+            equipamento = cadastroEquipamentos.buscarEquipamentoId(idEquipamento);
+            if (equipamento != null) {
+                break;
+            } else {
+                System.out.println("> Equipamento não encontrado. Tente novamente.");
+            }
+        }
+    
+        System.out.println("> Equipamento: " + equipamento.getNome());
+        System.out.println("> Responsável atual: " + equipamento.getFuncionario().getNome());
+    
+        int novaMatricula;
+        Funcionario novoResponsavel;
+    
+        
+        while (true) {
+            System.out.print("> Digite a matrícula do novo responsável: ");
+            novaMatricula = in.nextInt();
+            in.nextLine(); 
+    
+            novoResponsavel = cadastroFuncionarios.buscarFuncionarioMatricula(novaMatricula);
+            if (novoResponsavel != null) {
+                break;
+            } else {
+                System.out.println("> Funcionário não encontrado. Tente novamente.");
+            }
+        }
+        System.out.println("> Responsável alterado com sucesso!");
+        System.out.println("> Novo responsável: " + novoResponsavel.getNome() + " (Matrícula: " + novoResponsavel.getMatricula() + ")");
     }
 
     public void indisponibilizarEquipamento(int idEquipamento) {
