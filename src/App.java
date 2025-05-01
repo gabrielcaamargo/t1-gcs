@@ -11,7 +11,44 @@ public class App {
         in = new Scanner(System.in);
         cadastroFuncionarios = new CadastroFuncionarios();
         cadastroEquipamentos = new CadastroEquipamentos();
+        cadastroInicialDeInformacoes();
     }
+
+    public void cadastroInicialDeInformacoes() {
+        Funcionario nFuncionario1 = new Funcionario(1010, "Daniel", "Daniel@gmail");
+        Funcionario nFuncionario2 = new Funcionario(1011, "Gabriel", "Gabriel@gmail");
+        Funcionario nFuncionario3 = new Funcionario(1012, "Bryan", "Bryan@gmail");
+        Funcionario nFuncionario4 = new Funcionario(1013, "Rafael", "Guilherme@gmail");
+        Funcionario nFuncionario5 = new Funcionario(1014, "Matheus", "Matheus@gmail");
+
+        Equipamento nEquipamento1 = new Equipamento(1, "Celular", "Iphone", "30/04/2025", 5000, TipoEquipamento.MOVEL, nFuncionario1);
+        Equipamento nEquipamento2 = new Equipamento(2, "Notebook", "Notebook Acer", "01/05/2025", 6000, TipoEquipamento.MOVEL, nFuncionario2);
+        Equipamento nEquipamento3 = new Equipamento(3, "Celular", "Samsung", "01/05/2025", 3000, TipoEquipamento.MOVEL, nFuncionario3);
+        Equipamento nEquipamento4 = new Equipamento(4, "PC", "Computador CPU", "02/05/2025", 9000, TipoEquipamento.FIXO, nFuncionario4);
+        Equipamento nEquipamento5 = new Equipamento(5, "Telefone Fixo", "Telefone Fixo", "02/05/2025", 300, TipoEquipamento.FIXO, nFuncionario5);
+
+        nFuncionario1.addEquipamento(nEquipamento1);
+        nFuncionario2.addEquipamento(nEquipamento2);
+        nFuncionario3.addEquipamento(nEquipamento3);
+        nFuncionario4.addEquipamento(nEquipamento4);
+        nFuncionario4.addEquipamento(nEquipamento5);gi
+
+
+        cadastroEquipamentos.adicionaEquipamentos(nEquipamento1);
+        cadastroEquipamentos.adicionaEquipamentos(nEquipamento2);
+        cadastroEquipamentos.adicionaEquipamentos(nEquipamento3);
+        cadastroEquipamentos.adicionaEquipamentos(nEquipamento4);
+        cadastroEquipamentos.adicionaEquipamentos(nEquipamento5);
+
+        cadastroFuncionarios.cadastrarFuncionarios(nFuncionario1);
+        cadastroFuncionarios.cadastrarFuncionarios(nFuncionario2);
+        cadastroFuncionarios.cadastrarFuncionarios(nFuncionario3);
+        cadastroFuncionarios.cadastrarFuncionarios(nFuncionario4);
+        cadastroFuncionarios.cadastrarFuncionarios(nFuncionario5);
+
+
+    }
+
 
     public void executar() {
         int op;
@@ -161,14 +198,14 @@ public class App {
                     if (tipoEquipamento == 1) {
 
                         TipoEquipamento enumTipo = TipoEquipamento.MOVEL;
-                        Equipamento novoEquipmaneto = new Equipamento(idEquipamento, nomeEquipamento, 
+                        Equipamento novoEquipmaneto = new Equipamento(idEquipamento, nomeEquipamento,
                                 descricaoEquipamento, dataAquisição, custoAquisicao, enumTipo, null);
                         cadastroEquipamentos.adicionaEquipamentos(novoEquipmaneto);
 
                     } else if (tipoEquipamento == 2) {
 
                         TipoEquipamento enumTipo = TipoEquipamento.FIXO;
-                        Equipamento novoEquipmaneto = new Equipamento(idEquipamento, nomeEquipamento, 
+                        Equipamento novoEquipmaneto = new Equipamento(idEquipamento, nomeEquipamento,
                                 descricaoEquipamento, dataAquisição, custoAquisicao, enumTipo, null);
                         cadastroEquipamentos.adicionaEquipamentos(novoEquipmaneto);
 
@@ -301,7 +338,7 @@ public class App {
             System.out.println("> Equipamento não encontrado.");
         }
     }
-    
+
     public void cadastraFuncionarioResponsavel(int idEquipamento) {
         Funcionario funcionario;
         int idFuncionario;
@@ -311,14 +348,14 @@ public class App {
             System.out.println("\n> Digite o ID do funcionário responsável: ");
             idFuncionario = in.nextInt();
             funcionario = cadastroFuncionarios.buscarFuncionarioMatricula(idFuncionario);
-            if(funcionario == null) {
+            if (funcionario == null) {
                 System.out.print("Não foi possível encontrar um funcionário com essa matrícula!");
             }
-        }while(funcionario==null);
+        } while (funcionario == null);
 
         Equipamento equipamento = cadastroEquipamentos.buscarEquipamentoId(idEquipa);
 
-        if(equipamento != null) {
+        if (equipamento != null) {
             equipamento.setFuncionario(funcionario);
             funcionario.addEquipamento(equipamento);
         }
