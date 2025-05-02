@@ -24,9 +24,14 @@ public class Equipamento {
         this.descricao = novaDescricao;
     }
 
-    public int getId() {
-        return id;
-    }
+    // Getters
+    public int getId() { return id; }
+    public String getNome() { return nome; }
+    public String getDescricao() { return descricao; }
+    public TipoEquipamento getTipoEquipamento() { return tipoEquipamento; }
+    public double getValorAquisicao() { return valorAquisicao; }
+    public String getDataAquisicao() { return dataAquisicao; }
+    public Funcionario getFuncionario() { return funcionario; }
 
     public boolean equipamentoEstaDisponivel() {
         return this.disponivel;
@@ -46,7 +51,5 @@ public class Equipamento {
         this.funcionario = funcionario;
     }
 
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
+
 }
