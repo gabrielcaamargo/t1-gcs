@@ -38,4 +38,8 @@ public class CadastroFuncionarios {
         }
         return resultado;
     }
+
+    public boolean existemFuncionarios() {
+        return !funcionarios.isEmpty();
+    }
 }
