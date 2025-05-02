@@ -20,6 +20,10 @@ public class CadastroEquipamentos {
         return null;
     }
 
+    public boolean existemEquipamentos() {
+        return !equipamentos.isEmpty();
+    }
+
     public void pesquisarEquipamentoNome(String nome) {
         ArrayList<Equipamento> resultado = new ArrayList<>();
         for (Equipamento aux : equipamentos) {

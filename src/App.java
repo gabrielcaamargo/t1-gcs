@@ -1,11 +1,6 @@
-<<<<<<<HEAD=======
-
->>>>>>>0 acdc273097aa4130d0d329ccaab03fe7f6f9135
-
 import java.util.*;
 
 public class App {
-
     Scanner in;
     CadastroFuncionarios cadastroFuncionarios;
     CadastroEquipamentos cadastroEquipamentos;
@@ -14,6 +9,44 @@ public class App {
         in = new Scanner(System.in);
         cadastroFuncionarios = new CadastroFuncionarios();
         cadastroEquipamentos = new CadastroEquipamentos();
+        cadastroInicialDeInformacoes();
+    }
+
+    public void cadastroInicialDeInformacoes() {
+        Funcionario nFuncionario1 = new Funcionario(1010, "Daniel", "Daniel@gmail");
+        Funcionario nFuncionario2 = new Funcionario(1011, "Gabriel", "Gabriel@gmail");
+        Funcionario nFuncionario3 = new Funcionario(1012, "Bryan", "Bryan@gmail");
+        Funcionario nFuncionario4 = new Funcionario(1013, "Rafael", "Guilherme@gmail");
+        Funcionario nFuncionario5 = new Funcionario(1014, "Matheus", "Matheus@gmail");
+
+        Equipamento nEquipamento1 = new Equipamento(1, "Celular", "Iphone", "30/04/2025", 5000, TipoEquipamento.MOVEL,
+                nFuncionario1);
+        Equipamento nEquipamento2 = new Equipamento(2, "Notebook", "Notebook Acer", "01/05/2025", 6000,
+                TipoEquipamento.MOVEL, nFuncionario2);
+        Equipamento nEquipamento3 = new Equipamento(3, "Celular", "Samsung", "01/05/2025", 3000, TipoEquipamento.MOVEL,
+                nFuncionario3);
+        Equipamento nEquipamento4 = new Equipamento(4, "PC", "Computador CPU", "02/05/2025", 9000, TipoEquipamento.FIXO,
+                nFuncionario4);
+        Equipamento nEquipamento5 = new Equipamento(5, "Telefone Fixo", "Telefone Fixo", "02/05/2025", 300,
+                TipoEquipamento.FIXO, nFuncionario5);
+
+        nFuncionario1.addEquipamento(nEquipamento1);
+        nFuncionario2.addEquipamento(nEquipamento2);
+        nFuncionario3.addEquipamento(nEquipamento3);
+        nFuncionario4.addEquipamento(nEquipamento4);
+        nFuncionario4.addEquipamento(nEquipamento5);
+
+        cadastroEquipamentos.adicionaEquipamentos(nEquipamento1);
+        cadastroEquipamentos.adicionaEquipamentos(nEquipamento2);
+        cadastroEquipamentos.adicionaEquipamentos(nEquipamento3);
+        cadastroEquipamentos.adicionaEquipamentos(nEquipamento4);
+        cadastroEquipamentos.adicionaEquipamentos(nEquipamento5);
+
+        cadastroFuncionarios.cadastrarFuncionarios(nFuncionario1);
+        cadastroFuncionarios.cadastrarFuncionarios(nFuncionario2);
+        cadastroFuncionarios.cadastrarFuncionarios(nFuncionario3);
+        cadastroFuncionarios.cadastrarFuncionarios(nFuncionario4);
+        cadastroFuncionarios.cadastrarFuncionarios(nFuncionario5);
     }
 
     public void executar() {
@@ -43,10 +76,15 @@ public class App {
                     alterarSituacaoEquipamento();
                     break;
                 case 6:
-                    editarEquipamento();
-                    break;
+                    alterarResponsavelEquipamento();
                 case 7:
+                    listarFuncionarios();
+                    break;
+                case 8:
                     pesquisaEquipamento();
+                    break;
+                case 9:
+                    editarEquipamento();
                     break;
                 default:
                     System.out.println("> Opção inválida!");
@@ -62,8 +100,10 @@ public class App {
         System.out.println(" [3] Cadastrar Equipamento");
         System.out.println(" [4] Buscar Funcionario pelo Nome");
         System.out.println(" [5] Mudar situação do Equipamento");
-        System.out.println(" [6] Editar Equipamento");
-        System.out.println(" [7] Pesquisar Equipamento");
+        System.out.println(" [6] Alterar responsável por equipamento");
+        System.out.println(" [7] Lista de funcionários cadastrados");
+        System.out.println(" [8] Pesquisar Equipamento");
+        System.out.println(" [9] Editar Equipamento");
         System.out.println(" [0] Encerra sistema");
         System.out.print("> ");
     }
@@ -102,6 +142,11 @@ public class App {
     }
 
     public void procurarFuncionarioPeloNome() {
+        if (!cadastroFuncionarios.existemFuncionarios()) {
+            System.out.println("> Nenhum funcionário cadastrado.");
+            return;
+        }
+
         System.out.println("Digite o nome: ");
         String nome = in.nextLine();
         List<Funcionario> encontrados = cadastroFuncionarios.buscarFuncionarioNome(nome);
@@ -139,6 +184,11 @@ public class App {
 
     public void cadastroEquipamento() {
         System.out.println("\f CADASTRO EQUIPAMENTO");
+
+        if (!cadastroFuncionarios.existemFuncionarios()) {
+            System.out.println("> Nenhum funcionario cadastrado. Cadastro de equipamento impossivel.");
+            return;
+        }
 
         Equipamento aux;
         do {
@@ -200,8 +250,6 @@ public class App {
 
     }
 
-    <<<<<<<HEAD=======
-
     public void pesquisaEquipamento() {
         System.out.println("\f PESQUISA DE EQUIPAMENTO");
 
@@ -251,9 +299,12 @@ public class App {
         } while (!opcao.equals("0"));
     }
 
-    >>>>>>>0 acdc273097aa4130d0d329ccaab03fe7f6f9135
-
     public void editarFuncionario() {
+        if (!cadastroFuncionarios.existemFuncionarios()) {
+            System.out.println("> Nenhum funcionário cadastrado.");
+            return;
+        }
+
         System.out.println("\f EDITAR FUNCIONARIO");
         System.out.print("> Digite a matricula do funcionario: ");
         int matricula = in.nextInt();
@@ -299,6 +350,12 @@ public class App {
 
     public void alterarSituacaoEquipamento() {
         System.out.println("\f ALTERAR SITUAÇÃO DO EQUIPAMENTO");
+
+        if (!cadastroEquipamentos.existemEquipamentos()) {
+            System.out.println("> Nenhum equipamento cadastrado!");
+            return;
+        }
+
         System.out.print("> Digite o ID do equipamento: ");
         int idEquipamento = in.nextInt();
         in.nextLine();
@@ -332,9 +389,67 @@ public class App {
         }
     }
 
+    public void listarFuncionarios() {
+        System.out.println("\n--- LISTA DE FUNCIONÁRIOS ---");
+
+        ArrayList<Funcionario> lista = cadastroFuncionarios.listaFuncionarios();
+
+        if (lista.isEmpty()) {
+            System.out.println("> Nenhum funcionário cadastrado.");
+        } else {
+            for (Funcionario f : lista) {
+                System.out.println("Matrícula: " + f.getMatricula());
+                System.out.println("Nome: " + f.getNome());
+                System.out.println("Email: " + f.getEmail());
+                System.out.println("------------------------------");
+            }
+        }
+    }
+
+    public void alterarResponsavelEquipamento() {
+        System.out.println("\n--- ALTERAR RESPONSÁVEL DE EQUIPAMENTO ---");
+
+        int idEquipamento;
+        Equipamento equipamento;
+
+        while (true) {
+            System.out.print("> Digite o ID do equipamento: ");
+            idEquipamento = in.nextInt();
+            in.nextLine();
+
+            equipamento = cadastroEquipamentos.buscarEquipamentoId(idEquipamento);
+            if (equipamento != null) {
+                break;
+            } else {
+                System.out.println("> Equipamento não encontrado. Tente novamente.");
+            }
+        }
+
+        System.out.println("> Equipamento: " + equipamento.getNome());
+        System.out.println("> Responsável atual: " + equipamento.getFuncionario().getNome());
+
+        int novaMatricula;
+        Funcionario novoResponsavel;
+
+        while (true) {
+            System.out.print("> Digite a matrícula do novo responsável: ");
+            novaMatricula = in.nextInt();
+            in.nextLine();
+
+            novoResponsavel = cadastroFuncionarios.buscarFuncionarioMatricula(novaMatricula);
+            if (novoResponsavel != null) {
+                break;
+            } else {
+                System.out.println("> Funcionário não encontrado. Tente novamente.");
+            }
+        }
+        System.out.println("> Responsável alterado com sucesso!");
+        System.out.println("> Novo responsável: " + novoResponsavel.getNome() + " (Matrícula: "
+                + novoResponsavel.getMatricula() + ")");
+    }
+
     public void indisponibilizarEquipamento(int idEquipamento) {
         System.out.println("\f INDISPONIBILIZAR EQUIPAMENTO");
-
         Equipamento equipamento = cadastroEquipamentos.buscarEquipamentoId(idEquipamento);
         if (equipamento != null) {
             if (equipamento.equipamentoEstaDisponivel()) {
@@ -352,7 +467,6 @@ public class App {
 
     public void disponibilizarEquipamento(int idEquipamento) {
         System.out.println("\f DISPONIBILIZAR EQUIPAMENTO");
-
         Equipamento equipamento = cadastroEquipamentos.buscarEquipamentoId(idEquipamento);
         if (equipamento != null) {
             if (!equipamento.equipamentoEstaDisponivel()) {
@@ -364,11 +478,7 @@ public class App {
         } else {
             System.out.println("> Equipamento não encontrado.");
         }
-    }<<<<<<<HEAD
-
-    =======
-
-    >>>>>>>0 acdc273097aa4130d0d329ccaab03fe7f6f9135
+    }
 
     public void cadastraFuncionarioResponsavel(int idEquipamento) {
         Funcionario funcionario;
@@ -390,9 +500,9 @@ public class App {
             equipamento.setFuncionario(funcionario);
             funcionario.addEquipamento(equipamento);
         }
-    }<<<<<<<HEAD
+    }
 
-    public void editarEquipamento(){
+    public void editarEquipamento() {
         System.out.println("\f EDITAR EQUIPAMENTO");
         System.out.print("> Digite o ID do equipamento: ");
         int idEquipamento = in.nextInt();
@@ -431,4 +541,4 @@ public class App {
             System.out.println("Nenhum equipamento encontrado com o ID informado.");
         }
     }
-}=======}>>>>>>>0 acdc273097aa4130d0d329ccaab03fe7f6f9135
+}
