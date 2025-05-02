@@ -133,4 +133,35 @@ public class CadastroEquipamentos {
             }
         }
     }
+
+    public void listarEquipamentosAntigos(int anosLimite) {
+        boolean encontrou = false;
+
+        for (Equipamento eq : equipamentos) {
+            String data = eq.getDataAquisicao(); // formato: dd/MM/yyyy
+            String[] partes = data.split("/");
+
+            if (partes.length == 3) {
+                int anoAquisicao = Integer.parseInt(partes[2]);
+                int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
+
+                int anosDeUso = anoAtual - anoAquisicao;
+
+                if (anosDeUso > anosLimite) {
+                    System.out.println("ID: " + eq.getId() +
+                            " | Nome: " + eq.getNome() +
+                            " | Data de Aquisição: " + eq.getDataAquisicao() +
+                            " | Anos de uso: " + anosDeUso);
+                    encontrou = true;
+                }
+            }
+        }
+
+        if (!encontrou) {
+            System.out.println("> Nenhum equipamento com mais de " + anosLimite + " anos de uso.");
+        } else {
+            System.out.println("\n> ATENÇÃO: Equipamentos antigos podem precisar ser substituídos ou aposentados.");
+        }
+    }
+
 }
