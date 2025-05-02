@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class App {
@@ -84,6 +83,9 @@ public class App {
                 case 8:
                     pesquisaEquipamento();
                     break;
+                case 9:
+                    editarEquipamento();
+                    break;
                 default:
                     System.out.println("> Opção inválida!");
                     break;
@@ -101,6 +103,7 @@ public class App {
         System.out.println(" [6] Alterar responsável por equipamento");
         System.out.println(" [7] Lista de funcionários cadastrados");
         System.out.println(" [8] Pesquisar Equipamento");
+        System.out.println(" [9] Editar Equipamento");
         System.out.println(" [0] Encerra sistema");
         System.out.print("> ");
     }
@@ -219,9 +222,9 @@ public class App {
                     if (tipoEquipamento == 1) {
 
                         TipoEquipamento enumTipo = TipoEquipamento.MOVEL;
-                        Equipamento novoEquipmaneto = new Equipamento(idEquipamento, nomeEquipamento,
+                        Equipamento novoEquipamento = new Equipamento(idEquipamento, nomeEquipamento,
                                 descricaoEquipamento, dataAquisição, custoAquisicao, enumTipo, null);
-                        cadastroEquipamentos.adicionaEquipamentos(novoEquipmaneto);
+                        cadastroEquipamentos.adicionaEquipamentos(novoEquipamento);
 
                     } else if (tipoEquipamento == 2) {
 
@@ -496,6 +499,46 @@ public class App {
         if (equipamento != null) {
             equipamento.setFuncionario(funcionario);
             funcionario.addEquipamento(equipamento);
+        }
+    }
+
+    public void editarEquipamento() {
+        System.out.println("\f EDITAR EQUIPAMENTO");
+        System.out.print("> Digite o ID do equipamento: ");
+        int idEquipamento = in.nextInt();
+        in.nextLine();
+
+        Equipamento equipamento = cadastroEquipamentos.buscarEquipamentoId(idEquipamento);
+        if (equipamento != null) {
+            System.out.println("[1] Editar descrição com validação");
+            System.out.println("[2] Editar descrição sem validação");
+            System.out.println("[3] Cancelar");
+            System.out.print("> ");
+            int escolha = in.nextInt();
+            in.nextLine();
+            switch (escolha) {
+                case 1:
+                    System.out.print("> Digite a nova descrição: ");
+                    String novaDescVal = in.nextLine();
+                    equipamento.edicaoEquipamento(novaDescVal);
+                    System.out.println("> Equipamento atualizado com validação.");
+                    break;
+                case 2:
+                    System.out.print("> Digite a nova descrição: ");
+                    String novaDesc = in.nextLine();
+                    equipamento.editarDescricao(novaDesc);
+                    System.out.println("> Equipamento atualizado sem validação.");
+                    break;
+                case 3:
+                    System.out.println("> Operação cancelada.");
+                    return;
+                default:
+                    System.out.println("> Opção inválida, operação cancelada.");
+                    return;
+            }
+            System.out.println("Nova descrição do equipamento: " + equipamento.getDescricao());
+        } else {
+            System.out.println("Nenhum equipamento encontrado com o ID informado.");
         }
     }
 }

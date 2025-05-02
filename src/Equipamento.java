@@ -21,6 +21,14 @@ public class Equipamento {
         this.funcionario = funcionario;
     }
 
+    public boolean edicaoEquipamento(String novaDescricao) {
+        if (novaDescricao != null && !novaDescricao.trim().isEmpty()) {
+            this.descricao = novaDescricao;
+            return true;
+        }
+        return false;
+    }
+
     public void editarDescricao(String novaDescricao) {
         this.descricao = novaDescricao;
     }
@@ -71,5 +79,4 @@ public class Equipamento {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-
 }
