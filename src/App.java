@@ -1,3 +1,7 @@
+<<<<<<<HEAD=======
+
+>>>>>>>0 acdc273097aa4130d0d329ccaab03fe7f6f9135
+
 import java.util.*;
 
 public class App {
@@ -40,6 +44,10 @@ public class App {
                     break;
                 case 6:
                     editarEquipamento();
+                    break;
+                case 7:
+                    pesquisaEquipamento();
+                    break;
                 default:
                     System.out.println("> Opção inválida!");
                     break;
@@ -55,6 +63,7 @@ public class App {
         System.out.println(" [4] Buscar Funcionario pelo Nome");
         System.out.println(" [5] Mudar situação do Equipamento");
         System.out.println(" [6] Editar Equipamento");
+        System.out.println(" [7] Pesquisar Equipamento");
         System.out.println(" [0] Encerra sistema");
         System.out.print("> ");
     }
@@ -163,9 +172,9 @@ public class App {
                     if (tipoEquipamento == 1) {
 
                         TipoEquipamento enumTipo = TipoEquipamento.MOVEL;
-                        Equipamento novoEquipmaneto = new Equipamento(idEquipamento, nomeEquipamento,
+                        Equipamento novoEquipamento = new Equipamento(idEquipamento, nomeEquipamento,
                                 descricaoEquipamento, dataAquisição, custoAquisicao, enumTipo, null);
-                        cadastroEquipamentos.adicionaEquipamentos(novoEquipmaneto);
+                        cadastroEquipamentos.adicionaEquipamentos(novoEquipamento);
 
                     } else if (tipoEquipamento == 2) {
 
@@ -190,6 +199,59 @@ public class App {
         } while (aux != null);
 
     }
+
+    <<<<<<<HEAD=======
+
+    public void pesquisaEquipamento() {
+        System.out.println("\f PESQUISA DE EQUIPAMENTO");
+
+        String opcao;
+        do {
+            System.out.println("\n> Escolha uma opção de pesquisa:");
+            System.out.println("[1] ID");
+            System.out.println("[2] Nome");
+            System.out.println("[3] Descrição");
+            System.out.println("[4] Tipo");
+            System.out.println("[0] Voltar ao menu principal");
+            System.out.print("> ");
+            opcao = in.nextLine();
+
+            switch (opcao) {
+                case "1":
+                    System.out.print("> Digite o ID do equipamento: ");
+                    int id = in.nextInt();
+                    cadastroEquipamentos.buscarEquipamentoId(id);
+                    break;
+                case "2":
+                    System.out.print("> Digite o nome do equipamento: ");
+                    String nome = in.nextLine();
+                    cadastroEquipamentos.pesquisarEquipamentoNome(nome);
+                    break;
+                case "3":
+                    System.out.print("> Digite a descrição do equipamento: ");
+                    String descricao = in.nextLine();
+                    cadastroEquipamentos.pesquisaEquipamentoDescricao(descricao);
+                    break;
+                case "4":
+                    System.out.print("> Digite o tipo do equipamento (Móvel ou Fixo): ");
+                    String tipo = in.nextLine();
+                    if (tipo.equalsIgnoreCase("Móvel")) {
+                        cadastroEquipamentos.pesquisaEquipamentoTipo(TipoEquipamento.MOVEL);
+                    } else if (tipo.equalsIgnoreCase("Fixo")) {
+                        cadastroEquipamentos.pesquisaEquipamentoTipo(TipoEquipamento.FIXO);
+                    } else {
+                        System.out.println("Tipo inválido.");
+                    }
+                    break;
+                case "0":
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        } while (!opcao.equals("0"));
+    }
+
+    >>>>>>>0 acdc273097aa4130d0d329ccaab03fe7f6f9135
 
     public void editarFuncionario() {
         System.out.println("\f EDITAR FUNCIONARIO");
@@ -302,7 +364,11 @@ public class App {
         } else {
             System.out.println("> Equipamento não encontrado.");
         }
-    }
+    }<<<<<<<HEAD
+
+    =======
+
+    >>>>>>>0 acdc273097aa4130d0d329ccaab03fe7f6f9135
 
     public void cadastraFuncionarioResponsavel(int idEquipamento) {
         Funcionario funcionario;
@@ -313,18 +379,18 @@ public class App {
             System.out.println("\n> Digite o ID do funcionário responsável: ");
             idFuncionario = in.nextInt();
             funcionario = cadastroFuncionarios.buscarFuncionarioMatricula(idFuncionario);
-            if(funcionario == null) {
+            if (funcionario == null) {
                 System.out.print("Não foi possível encontrar um funcionário com essa matrícula!");
             }
-        }while(funcionario==null);
+        } while (funcionario == null);
 
         Equipamento equipamento = cadastroEquipamentos.buscarEquipamentoId(idEquipa);
 
-        if(equipamento != null) {
+        if (equipamento != null) {
             equipamento.setFuncionario(funcionario);
             funcionario.addEquipamento(equipamento);
         }
-    }
+    }<<<<<<<HEAD
 
     public void editarEquipamento(){
         System.out.println("\f EDITAR EQUIPAMENTO");
@@ -365,4 +431,4 @@ public class App {
             System.out.println("Nenhum equipamento encontrado com o ID informado.");
         }
     }
-}
+}=======}>>>>>>>0 acdc273097aa4130d0d329ccaab03fe7f6f9135
