@@ -79,6 +79,9 @@ public class App {
                 case 6:
                     alterarResponsavelEquipamento();
                 case 7:
+                    listarFuncionarios();
+                    break;
+                case 8:
                     pesquisaEquipamento();
                     break;
                 default:
@@ -96,7 +99,8 @@ public class App {
         System.out.println(" [4] Buscar Funcionario pelo Nome");
         System.out.println(" [5] Mudar situação do Equipamento");
         System.out.println(" [6] Alterar responsável por equipamento");
-        System.out.println(" [7] Pesquisar Equipamento");
+        System.out.println(" [7] Lista de funcionários cadastrados");
+        System.out.println(" [8] Pesquisar Equipamento");
         System.out.println(" [0] Encerra sistema");
         System.out.print("> ");
     }
@@ -379,6 +383,23 @@ public class App {
 
         } else {
             System.out.println("> Equipamento não encontrado.");
+        }
+    }
+
+    public void listarFuncionarios() {
+        System.out.println("\n--- LISTA DE FUNCIONÁRIOS ---");
+
+        ArrayList<Funcionario> lista = cadastroFuncionarios.listaFuncionarios();
+
+        if (lista.isEmpty()) {
+            System.out.println("> Nenhum funcionário cadastrado.");
+        } else {
+            for (Funcionario f : lista) {
+                System.out.println("Matrícula: " + f.getMatricula());
+                System.out.println("Nome: " + f.getNome());
+                System.out.println("Email: " + f.getEmail());
+                System.out.println("------------------------------");
+            }
         }
     }
 
