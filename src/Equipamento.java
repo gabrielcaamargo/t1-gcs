@@ -8,7 +8,8 @@ public class Equipamento {
     private String motivoIndisponibilidade;
     private Funcionario funcionario;
 
-    public Equipamento(int id, String nome, String descricao, String dataAquisicao, double valorAquisicao, TipoEquipamento tipo, Funcionario funcionario) {
+    public Equipamento(int id, String nome, String descricao, String dataAquisicao, double valorAquisicao,
+            TipoEquipamento tipo, Funcionario funcionario) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -24,8 +25,33 @@ public class Equipamento {
         this.descricao = novaDescricao;
     }
 
+    // Getters
     public int getId() {
         return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public TipoEquipamento getTipoEquipamento() {
+        return tipoEquipamento;
+    }
+
+    public double getValorAquisicao() {
+        return valorAquisicao;
+    }
+
+    public String getDataAquisicao() {
+        return dataAquisicao;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 
     public boolean equipamentoEstaDisponivel() {
@@ -41,16 +67,9 @@ public class Equipamento {
         this.disponivel = true;
         this.motivoIndisponibilidade = null;
     }
-    
+
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
 
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public String getNome() {
-       return nome;
-    }
 }
