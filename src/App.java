@@ -192,7 +192,7 @@ public class App {
 
         Equipamento aux;
         do {
-            System.out.print("> Digite o ID ÚNICO do equipamento:");
+            System.out.print("> Digite o ID ÚNICO do equipamento: ");
             int idEquipamento = in.nextInt();
             in.nextLine();
             aux = cadastroEquipamentos.buscarEquipamentoId(idEquipamento);
@@ -246,8 +246,37 @@ public class App {
                 System.out.println("ATENÇÃO! ID em uso.");
                 continue;
             }
-        } while (aux != null);
 
+            System.out.print("> Nome do Equipamento: ");
+            String nomeEquipamento = in.nextLine();
+
+            System.out.print("> Descrição do Equipamento: ");
+            String descricaoEquipamento = in.nextLine();
+
+            System.out.print("> Data de aquisição: ");
+            String dataAquisição = in.nextLine();
+
+            System.out.print("> Custo da Aquisição: ");
+            double custoAquisicao = in.nextDouble();
+
+            int tipoEquipamento;
+            do {
+                System.out.println("\n> Tipo de Equipamento");
+                System.out.println("[1] Móvel");
+                System.out.println("[2] Fixo");
+                System.out.print("> ");
+                tipoEquipamento = in.nextInt();
+            } while (tipoEquipamento < 1 || tipoEquipamento > 2);
+
+            TipoEquipamento enumTipo = (tipoEquipamento == 1) ? TipoEquipamento.MOVEL : TipoEquipamento.FIXO;
+            Equipamento novoEquipamento = new Equipamento(idEquipamento, nomeEquipamento,
+                    descricaoEquipamento, dataAquisição, custoAquisicao, enumTipo, null);
+            cadastroEquipamentos.adicionaEquipamentos(novoEquipamento);
+
+            cadastraFuncionarioResponsavel(idEquipamento);
+            System.out.println("> Cadastrado com sucesso!");
+
+        } while (false); // O loop principal foi ajustado para não repetir
     }
 
     public void pesquisaEquipamento() {
