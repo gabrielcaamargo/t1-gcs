@@ -86,6 +86,9 @@ public class App {
                 case 9:
                     editarEquipamento();
                     break;
+                case 10:
+                    listarEquipamentosAntigos();
+                    break;
                 default:
                     System.out.println("> Opção inválida!");
                     break;
@@ -104,6 +107,7 @@ public class App {
         System.out.println(" [7] Lista de funcionários cadastrados");
         System.out.println(" [8] Pesquisar Equipamento");
         System.out.println(" [9] Editar Equipamento");
+        System.out.println(" [10] Listar Equipamentos Antigos (> N anos)");
         System.out.println(" [0] Encerra sistema");
         System.out.print("> ");
     }
@@ -570,4 +574,12 @@ public class App {
             System.out.println("Nenhum equipamento encontrado com o ID informado.");
         }
     }
+
+    public void listarEquipamentosAntigos() {
+        System.out.print("> Informe a idade mínima dos equipamentos (em anos): ");
+        int anos = in.nextInt();
+        in.nextLine();
+        cadastroEquipamentos.listarEquipamentosAntigos(anos);
+    }
+
 }
